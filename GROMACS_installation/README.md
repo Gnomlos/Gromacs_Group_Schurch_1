@@ -8,7 +8,7 @@ The first thing you need to do is to download GROMACS. Go to https://manual.grom
 
 Then you will navigate inside your file and create a directory "build" which you will get into. 
 
-# 2. Intallation of GROOMACS
+# 2. Intallation of GROMACS
 Now we will install GROMACS on our computer:
 1. use the "cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=ON" with the path of the top directory of GROMACS in place of the 2 dots.
 2. type "make"
