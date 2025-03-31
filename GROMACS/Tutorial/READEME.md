@@ -1,0 +1,2 @@
+# GROMACS Tutorial
+This page is dedicated to learning the basis of GROMACS. GROMACS is programm calculating different parameter of molecules in a given environement in order to get the final calculation. To "_feed_" the program multiple saller fiel are needed. Each one of those files are filled with the information about either your molecule or it environement. Consequently to change a parameter of the simulation or to share the simulation only those small files are necessary.
