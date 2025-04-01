@@ -5,4 +5,4 @@ In order to work effeciently a certain organistion is necessary. The following r
 3. For every new condition for a already existing molecule a new branch needs to be formed and named accordingly.
 4. The results for the simulation need to be in the same directory as the data, in a new directory _results_.
 5. In the directory __logic__, important remark and advice for the simulations can be stores, like defaults parameter for a set of parameter used across different molecule. Please write a .md file to explain the choosen parameters and the reasons behind their values (source if possible).
-6. Least but no last in the directory __Smile__ put your best result, images for the pleasure of the group. 
+6. Least but no last in the directory __GOAT__ put your best result, images for the pleasure of the group. 
