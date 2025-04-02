@@ -51,13 +51,18 @@ Virtual site can be set up in the .top file under the \[ virtual\_sites? \] sect
 
 Atom have different proprieties which are called, _parameters_.
 
-| Propriety | Symbol | Unit |  |
-| --- | --- | --- | --- |
-| Type (Name of the atom) | \- | \- |  |
-| Mass | m | a.m.u |  |
-| Charge | q | electron |  |
-| Epsilon | \epsilon | kJ/mol | |
-| sigma | \sigma | nm |  |
+| Propriety | Symbol | Unit |
+| --- | --- | --- |
+| Type (Name of the atom) | \- | \- | 
+| Mass | m | a.m.u |  
+| Charge | q | electron |  
+| Epsilon | \epsilon | kJ/mol |
+| sigma | \sigma | nm |
+
+Those proprieties are initialy stored in the `atomtypes.atp` for the atom mass, the charge are found in the __.rtp__ file, where the \epsilon (denoted as W or c12)and \sigma (denoted as V or c6) paramters are found in the `ffnonbonded.itp`. The different proprieties are then combine in the topology file. 
+> It is to be noted that the \sigma and \epsilon factors are important in the calculation of the __non-bonded__ interaction, using the [Lennard-Jone interaction](https://manual.gromacs.org/current/reference-manual/functions/nonbonded-interactions.html#lj).
+
+Bonded parameter are found in a separate file:`ffbonded.itp` which are then inclueded in the topology file under either the `[ bonds ]`,  `[ angle ]`,`[ dihedral ]`,... section.
 
 In the `[ atomtypes ]` section of your .top file it
 
