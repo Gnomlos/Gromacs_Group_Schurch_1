@@ -63,12 +63,12 @@ Those proprieties are initialy stored in the `atomtypes.atp` for the atom mass, 
 > It is to be noted that the \sigma and \epsilon factors are important in the calculation of the __non-bonded__ interaction, using the [Lennard-Jone interaction](https://manual.gromacs.org/current/reference-manual/functions/nonbonded-interactions.html#lj).
 
 Bonded parameter are found in a separate file:`ffbonded.itp` which are then inclueded in the topology file under either the `[ bonds ]`,  `[ angle ]`,`[ dihedral ]`,... section.
+#### Molecule definition
+Until now, only the ocntext of the atom was discussed, __but__ GROMACS is used to simulate whole molecules. In the topology file, the `[ moleculetype]` entry allows to structure in term of molecules, allowing the have only one single entry for every moleucle type present in our simulation --> this implies that in the topology file all the molecule present in the reaction are present. This represent alo a challenge since GROMACS needs to be told how those molecule are interacting with each other, in other term how does the same moleucle behave when it meets the itself. This is done in the _mdp_ file.
+> Molecule  which convalently bond a ligand need to be describe in the `[ moleculetype]` entry. If not convalently bonded then they both needs their own separate entry in `[ moleculetype]`. The non-convalent interaction are define at the end of the topology file in the `[ intermolecular_interactions ]` entry.
+> Another entry of the topology file is the entry `[ pair ]` which allows for the specific definition of electrostatic interaction between a pair of atom. It is to be noted that interactions do not take plpace between atom which are to close to each other in the molecule. This is the concept of __exclusion__. Extra exclusion can be added in the `[ exclusion ]` entry at the end of the topology file.
 
-In the `[ atomtypes ]` section of your .top file it
 
-##### The non bonded interactions
-
-Non bonded interactions represent the interactions between non-bonded atoms. They are represented by the following equations: $$
 
 ### The definition of the box and solvate
 
