@@ -54,10 +54,10 @@ Atom have different proprieties which are called, _parameters_.
 | Propriety | Symbol | Unit |  |
 | --- | --- | --- | --- |
 | Type (Name of the atom) | \- | \- |  |
-| Mass | Cell 2-2 | Cell 2-3 |  |
-| Charge | Cell 3-2 | Cell 3-3 |  |
-| Epsilon | Cell 4-1 | Cell 4-2 | Cell 4-3 |
-| sigma | Cell 5-2 | Cell 5-3 |  |
+| Mass | m | a.m.u |  |
+| Charge | q | electron |  |
+| Epsilon | \epsilon | kJ/mol | |
+| sigma | \sigma | nm |  |
 
 In the `[ atomtypes ]` section of your .top file it
 
