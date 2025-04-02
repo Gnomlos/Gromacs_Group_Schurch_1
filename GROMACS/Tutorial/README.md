@@ -29,7 +29,16 @@ Each atom is defined into a foce field, by its mass and name. This "_list_" is f
 Virtual sites are interactio site constructed based on the position of other particle positions on which certain interactions are located.  
 
 Virtual site can be set up in the .top file under the [ virtual_sites? ] section with the __?__ standing for the number of  virtual site present. This being a rather complicated subject, it is recommander to read the section dedicated to it on https://manual.gromacs.org/current/reference-manual/topologies/particle-type.html .
-### The defenition of the box and solvate
+
+#### Parameter files
+
+##### The non bonded interactions
+Non bonded interactions represent the interactions between non-bonded atoms. They are represented by the following equations:
+$$ 
+
+
+### The definition of the box and solvate
+
 ### The ions addition
 ### The energy minimization
 ### The equilibration
