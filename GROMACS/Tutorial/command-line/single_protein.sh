@@ -1,5 +1,4 @@
-
-gm pdb2gmx -f protein.pdb -o processed.gro -ff 15 -water spce
+gmx pdb2gmx -f protein.pdb -o processed.gro -ff OPLS-AA -water spce
 # It is advise to take a  box, but a cube is fine for the start.
 gmx editconf -f processed.gro -o newbox.gro -c -d 1.0 -bt cubic
 gmx solvate -cp newbox.gro -cs spc216.gro -o solved.gro -p topol.top
