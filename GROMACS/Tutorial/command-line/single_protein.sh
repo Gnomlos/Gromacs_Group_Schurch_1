@@ -26,6 +26,15 @@ echo Pres | gmx energy -f npt.edr -o pressure.xvg
 echo Dens | gmx energy -f npt.edr -o density.xvg
 
 #Simulation of the molecule after equilibration
+gmx grompp -f md.mdp -c npt.gro -t npt.cpt -p topol.top -o md_0_1.tpr
+gmx mdrun -deffnm md_0_1
+
+# Analysis
+echo Prot Sys | gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -center
+echo Back Back | gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd.xvg -tu ns
+echo Prot | gmx gyrate -s md_0_1.tpr -f md_0_1_noPBC.xtc -o gyrate.xvg
+
+
 
 
 
