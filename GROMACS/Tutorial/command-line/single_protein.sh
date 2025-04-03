@@ -10,14 +10,23 @@ gmx genion -s ions.tpr -o solved_ions.gro -p topol.top -pname NA -nname CL -neut
 # Build the file for the Energy minimization the minim.mdp should be written by the author.
 gmx grompp -f minim.mdp -c solved_ions.gro -p topol.top -o em.tpr
 gmx mdrun -deffnm em
-gmx energy -f em.edr -o potential.xvg # To produce the energy minimization graph.
+echo Pot | gmx energy -f em.edr -o potential.xvg # To produce the energy minimization graph. # To draw the graph
 
 # Calculation of the equilibration respective to the temperature, the nvt.mdp file shoud be written by the author 
 gmx grompp -f nvt.mdp -c em.gro -r em.gro -p topol.top -o nvt.tpr
 gmx mdrun -deffnm nvt
-gmx energy -f nvt.edr -o temperature.xvg # To produce the graph.
+echo Temp | gmx energy -f nvt.edr -o temperature.xvg # To produce the graph.
 
 # Calculation of the equilibration respective to the pressure, the npt.mdp file shoud be written by the author 
 gmx grompp -f npt.mdp -c nvt.gro -r nvt.gro -t nvt.cpt -p topol.top -npt.tpr
 gmx mdrun -deffnm npt
-gmx energy -f npt.edr -o pressure.xvg
+echo Pres | gmx energy -f npt.edr -o pressure.xvg
+
+#Calculating density
+echo Dens | gmx energy -f npt.edr -o density.xvg
+
+#Simulation of the molecule after equilibration
+
+
+
+
