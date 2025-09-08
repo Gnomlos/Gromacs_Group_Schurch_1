@@ -15,7 +15,3 @@ The interaction of gadolinium ions (Gd³⁺) with proteins critically depends on
 
 In essence, fpocket functions as an **efficient structural filter**, ensuring that only pockets large enough for the hydrated Gd³⁺ complex enter into more computationally intensive investigations.
 
----
-
-Would you like me to assist with designing a custom schematic (e.g., producing a simple vector diagram of the Gd³⁺ hydration shell with size annotation), or integrating the actual hydration images into your project asset folder?
-::contentReference[oaicite:9]{index=9}
