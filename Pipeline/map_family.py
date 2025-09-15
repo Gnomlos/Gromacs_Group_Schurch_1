@@ -20,12 +20,11 @@ def pdb_to_uniprot(pdb_id):
     out = []
     for acc, info in data[pdb_id.lower()].get("UniProt",{}).items():
         name = info.get("name") or info.get("entry_name") or ""
-        print(acc," ",name)
         out.append((acc, name))
     return out
 
 def uniprot_to_cath(acc):
-    """Return list of (cath_id, cath_name) from UniProt entry."""
+    """Return list of (cath_id) from UniProt entry."""
     data = get_json(f"{UniProt}/{acc}.json")
     if not data: return []
     cath = []
@@ -33,10 +32,9 @@ def uniprot_to_cath(acc):
         if xref.get("database")=="Gene3D":
             props = {p["key"]:p["value"] for p in xref.get("properties",[])}
             cath_id = props.get("CATH id") or xref.get("id")
-            cath_name = props.get("Entry name") or props.get("Entry description")
+            #cath_name = props.get("Entry name") or props.get("Entry description")
             if cath_id:
-                cath.append((cath_id,cath_name))
-                print("cath ", cath_id)
+                cath.append((cath_id))
     return cath
 
 def main():
@@ -52,20 +50,31 @@ def main():
     rows=[]
     for i,pdb in enumerate(pdb_ids,1):
         for acc,name in pdb_to_uniprot(pdb):
-            for cid,cname in uniprot_to_cath(acc):
+            for cid in uniprot_to_cath(acc):
                 rows.append({"pdb_id":pdb,"uniprot_id":acc,"protein_name":name,
-                             "cath_superfamily_id":cid,"cath_superfamily_name":cname})
+                             "cath_superfamily_id":cid})
         if i%50==0: print(f"...{i}/{len(pdb_ids)} done")
         time.sleep(0.1)
 
     cath_df=pd.DataFrame(rows)
     cath_df.to_csv(f"{args.out_prefix}_per_protein.csv",index=False)
-
     if args.input_table:
-        tbl=pd.read_csv(args.input_table)
-        tbl["_pdb_id"]=tbl[args.protein_col].astype(str).str.extract(r"^([0-9A-Za-z]{4})",expand=False).str.lower()
-        annotated=tbl.merge(cath_df,on="pdb_id",how="left")
-        annotated.to_csv(f"{args.out_prefix}_annotated.csv",index=False)
+        tbl = pd.read_csv(args.input_table)
+
+        # Extract the 4-char PDB ID from the protein column (handles "3B2D_protonated_out")
+        tbl["_pdb_id"] = (
+            tbl[args.protein_col]
+            .astype(str)
+            .str.extract(r"^([0-9A-Za-z]{4})", expand=False)
+            .str.lower()
+    )
+
+    # Merge on pdb_id
+    annotated = tbl.merge(cath_df, left_on="_pdb_id", right_on="pdb_id", how="left")
+
+    out_tbl = Path(f"{args.out_prefix}_annotated.csv")
+    annotated.to_csv(out_tbl, index=False)
+    print(f"Wrote annotated table to {out_tbl}")
 
 if __name__=="__main__":
     main()
