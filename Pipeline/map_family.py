@@ -19,7 +19,7 @@ def pdb_to_uniprot(pdb_id):
     if not data or pdb_id.lower() not in data: return []
     out = []
     for acc, info in data[pdb_id.lower()].get("UniProt",{}).items():
-        name = info.get("protein_name") or info.get("entry_name") or ""
+        name = info.get("name") or info.get("entry_name") or ""
         print(acc," ",name)
         out.append((acc, name))
     return out
