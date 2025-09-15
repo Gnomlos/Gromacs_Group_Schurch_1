@@ -78,6 +78,21 @@ def main():
     out_tbl = Path(f"{args.out_prefix}_annotated.csv")
     annotated.to_csv(out_tbl, index=False)
     print(f"Wrote annotated table to {out_tbl}")
+    # --- Summary statistics ---
+    n_proteins = cath_df["uniprot_id"].nunique(dropna=True)
+    n_superfam = cath_df["cath_superfamily_id"].nunique(dropna=True)
+
+    summary_text = (
+        f"There are {n_proteins} unique proteins "
+        f"repartitioned over {n_superfam} CATH superfamilies."
+    )
+    print(summary_text)
+
+    # Save to a small text file
+    summary_path = Path(f"{args.out_prefix}_summary.txt")
+    with open(summary_path, "w") as f:
+        f.write(summary_text + "\n")
+    print(f"Wrote summary to {summary_path}")
 
 if __name__=="__main__":
     main()
