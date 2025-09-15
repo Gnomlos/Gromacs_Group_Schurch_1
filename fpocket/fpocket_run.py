@@ -1,4 +1,6 @@
 # run_fpocket_batch.py
+# So this scrip is mainly use for runing f-pocket alone over a range of protein. Beware of the following: it clean the data by removing possible non-protein atom, like water. But it DOESN'T adapt the protein to the pH. 
+
 import subprocess, os, pathlib
 from tqdm import tqdm   # For the progress bar
 
