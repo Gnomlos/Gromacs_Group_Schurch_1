@@ -1,0 +1,7 @@
+Minimize water/ions with restraints on solute
+ &cntrl
+   imin=1, maxcyc=5000, ncyc=2500,
+   cut=9.0, ntb=1, igb=0,
+   restraint_wt=5.0,
+   restraintmask='!:WAT,Na+,K+,Cl- & !@H=',
+ /
