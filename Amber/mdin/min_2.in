@@ -1,0 +1,6 @@
+Minimize all atoms
+ &cntrl
+   imin=1, maxcyc=10000, ncyc=5000,
+   cut=9.0, ntb=1, igb=0,
+   restraint_wt=0.0,
+ /
