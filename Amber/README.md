@@ -1,4 +1,4 @@
-### AMBER: A Molecular dynamic simulation software
+# AMBER: A Molecular dynamic simulation software
 Amber, much like GROMACS is one of the most used md software. The main difference with GROMACS is however its **flexibility**. Over time multiple settings and tools for different case were devlopped. In our case, their is two main tools
 wich are very intersesting: MCBP.py and MMPBSA.py. Both of wich will serve us to simulate the Gd ions and to calculate the bonding energy of this ion to the protein (possibly molecule). 
 > For the installation of Amber, please consult the instruction in the *Amber_source_file* folder.
