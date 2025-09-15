@@ -8,3 +8,7 @@ the simulation of a chemical environement using a computer. However contrary to 
 simpler, lighter software which gives overall good results; it is however a bit less precise. 
 
 Ok, but how do we simulate our experience? Simply buy telling the software what are the conditions of our experiment **in a precise order**. The order of steps is important and it is actually where the major errors can come from; so lets decompose the different steps and explain what each do. 
+
+### System Preparation
+This step is used to setup the environement for our molecule of study. So image you had a glass cube and you wanted to study a protein. First you would put the protein in the cube then fill it with the desire solvent (in most of the case water) Then defining your pH (to correctly deprotonate or protonated the protein), and then add maybe the ion of interest (in our case Gd3+) before neutralising the enironment (the overall charge of the system need to be 0) by adding counterions (Na^+ and Cl^-).
+> One of the important steps of the system preparation is the choice of the force field and of the water model. Those are theoretical model set up to describe the interation between the different particles in our system. Choosing the correct system is determinant for the simulation to be correct. 
