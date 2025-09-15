@@ -1,0 +1,12 @@
+Heat to 300 K (NVT) with restraints on backbone/metal sphere
+ &cntrl
+   imin=0, irest=0, ntx=1,
+   nstlim=125000, dt=0.002,      ! 250 ps
+   tempi=0.0, temp0=300.0,
+   ntb=1, ntp=0, cut=9.0,
+   ntc=2, ntf=2,
+   ntt=3, gamma_ln=2.0,          ! Langevin
+   ntpr=1000, ntwx=1000, ntwr=10000,
+   restraint_wt=2.0,
+   restraintmask='@CA,C,N | :ZN+,MG+,FE,GD+3 | :1-999@SG,ND1,NE2,OD1,OD2,OE1,OE2',  ! edit for your site
+ /
