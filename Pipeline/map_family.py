@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# This script is used to map the protein with their superfamily of CATH3D id (funfam).
+# Also please make sure that the libraries are installed 
+
 import argparse, time, requests, pandas as pd
 from pathlib import Path
 
