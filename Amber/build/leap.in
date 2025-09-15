@@ -1,0 +1,33 @@
+# ==== Choose force fields ====
+source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+
+# ==== OPTIONAL: include MCPB.py outputs for the metal site ====
+# Comment these if you don't have MCPB files
+loadOff  ./mcpb.lib
+loadAmberParams ./mcpb.frcmod
+
+# ==== Load your structure ====
+prot = loadPdb ../input.pdb
+
+# If your MCPB site created custom residues (e.g., MTL, CX1...), they should
+# be recognized automatically by loading the lib above.
+
+# ==== Box, solvate, ions ====
+# Octahedral box with 10 Å padding
+solvateOct prot TIP3PBOX 10.0
+
+# Neutralize (add counterions). Replace Na+/Cl- with K+/Cl- if you prefer.
+addIonsRand prot Na+ 0
+addIonsRand prot Cl- 0
+
+# (Optional) add approximate 0.15 M salt — add equal numbers of Na+/Cl-.
+# For quick screening, +10–20 pairs is often fine for boxes ~80–120k atoms:
+# addIonsRand prot Na+ 15
+# addIonsRand prot Cl- 15
+
+# ==== Save topology/coords ====
+saveAmberParm prot ../run/prmtop ../run/inpcrd
+savePdb prot ../run/boxed.pdb
+
+quit
