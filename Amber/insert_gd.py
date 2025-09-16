@@ -37,3 +37,6 @@ with csv_in.open() as f:
         out_pdb = pdb_in.with_name(f"{pdb_in.stem}_{tag}{i:03d}_GD3.pdb")
         out_pdb.write_text("\n".join(out))
         print(f"Wrote {out_pdb}")
+
+
+# bash-use: python insert_gd.py protein_pH7.pdb pockets.csv
