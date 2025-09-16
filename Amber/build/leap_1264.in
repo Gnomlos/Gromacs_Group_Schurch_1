@@ -1,0 +1,29 @@
+#This is the part for the non-bonded model for Gd. IF YOU WANT TO CHANGE THE ION, you need to change the ion here.
+# Force fields
+source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+
+# Ion libraries & 12-6-4 LJ params (TIP3P set; check exact file name on your install)
+# List candidates with: ls $AMBERHOME/dat/leap/parm/frcmod.ions*1264*tip3p*
+loadamberparams frcmod.ions234lm_1264_tip3p   # name may vary by Amber version. Verify path.  # see tutorial note
+# (atomic_ions.lib is auto-loaded by water leaprc; it includes Gd3+) 
+
+# A tiny one-atom lib for matching the GD3 residue name in your PDB
+# (Ensures LEaP recognizes 'GD3' with atom type 'Gd3+' and +3 charge)
+loadoff ./gd3.lib
+
+# Load the PDB that already contains the GD3 atom at your pocket center
+mol = loadPdb ../protein_pH7_POCKET001_GD3.pdb
+
+# Optional: add pairwise C4 terms via Amber24 tLEaP (instead of ParmEd)
+# Apply metal<->water C4 (TIP3P). Syntax & availability documented in Amber24 manual/tutorials.
+addC4Type :GD3 watermodel TIP3P
+
+# Box, solvate, counterions
+solvateOct mol TIP3PBOX 10.0
+addIonsRand mol Cl- 0
+addIonsRand mol Na+ 0
+
+saveAmberParm mol ../run/prmtop ../run/inpcrd
+savePdb mol ../run/boxed.pdb
+quit
