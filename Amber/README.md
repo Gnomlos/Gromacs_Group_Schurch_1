@@ -11,4 +11,14 @@ Ok, but how do we simulate our experience? Simply buy telling the software what 
 
 ### System Preparation
 This step is used to setup the environement for our molecule of study. So image you had a glass cube and you wanted to study a protein. First you would put the protein in the cube then fill it with the desire solvent (in most of the case water) Then defining your pH (to correctly deprotonate or protonated the protein), and then add maybe the ion of interest (in our case Gd3+) before neutralising the enironment (the overall charge of the system need to be 0) by adding counterions (Na^+ and Cl^-).
-> One of the important steps of the system preparation is the choice of the force field and of the water model. Those are theoretical model set up to describe the interation between the different particles in our system. Choosing the correct system is determinant for the simulation to be correct. 
+> One of the important steps of the system preparation is the choice of the force field and of the water model. Those are theoretical model set up to describe the interation between the different particles in our system. Choosing the correct system is determinant for the simulation to be correct.
+
+
+### The 12-6-4 LJ non bondd model
+The 12-6-4 LJ non-bonded model allows for a better representation of the interaction between highly charged metal ions and proteins, consequently it is important to use it when studying protein complex.
+#### File preparation
+To start using amber mit metal complex and the 12-6-4 model, the following data and files are needed. 
+> The *.pdb* file of the protein.
+> The location of the metal ion in the protein.
+> The different input files: **min_1.in, min_2.in , heat.in,...**.
+Then we need to generate **two** important files: the *mol2* and *frcmod* files. Fo this we use **antechamber** and **parmchk**.
