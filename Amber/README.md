@@ -18,7 +18,28 @@ This step is used to setup the environement for our molecule of study. So image 
 The 12-6-4 LJ non-bonded model allows for a better representation of the interaction between highly charged metal ions and proteins, consequently it is important to use it when studying protein complex.
 #### File preparation
 To start using amber mit metal complex and the 12-6-4 model, the following data and files are needed. 
-> The *.pdb* file of the protein.
-> The location of the metal ion in the protein.
-> The different input files: **min_1.in, min_2.in , heat.in,...**.
+- The *.pdb* file of the protein.
+- The location of the metal ion in the protein.
+- The different input files:
+  - min_1.in
+  - min_2.in
+  - heat.in
+  - ...
+- The leap.in file (it has some specificity compared to a normal leap.in file)
 Then we need to generate **two** important files: the *mol2* and *frcmod* files. Fo this we use **antechamber** and **parmchk**.
+First we generate the mol2 file with the following command:
+```
+#if amber is not already loaded
+module load Amber
+antechamber -i MOL.pdb -f pdb -o MOL.mol2 -fo mol2 -c bcc -nc 0 -m 1
+```
+The *-nc* variable is the charge of the molecule and the *-m* is the multiplicity.
+Then when the mol2 file done we can use it to form the frcmod file:
+```
+parmchk - MOL.mol2 -f mol2 -o MOL.frcmod -fo 
+```
+Now we have all what we need,let's run **tleap**:
+```
+tleap -s -f leap.in
+```
+> The tleap.in file needs to possess the addC4Type line to do have the C4 term added.
